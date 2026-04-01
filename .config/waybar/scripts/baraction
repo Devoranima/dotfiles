@@ -22,8 +22,20 @@ xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita$SWITCHTO"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita$SWITCHTO"
 gsettings set org.gnome.desktop.interface icon-theme "Adwaita$SWITCHTO"
 
+
+wallpapers_folder=~/.config/hypr/wallpapers
+
+#show the correct wallpapper based on the theme
+if [ $THEMEIS == "dark.css" ]; then 
+    wallpapers_folder="${wallpapers_folder}/light"
+else
+    wallpapers_folder="${wallpapers_folder}/dark"
+fi
+
+wallpapaer_filename=$(find $wallpapers_folder -type f | shuf -n 1)
+
 #change the background image and be cool about it ;)
-swww img ~/.config/hypr/bg$SWITCHTO.jpg --transition-fps 144 --transition-type wipe --transition-duration 1
+swww img $wallpapaer_filename --transition-fps 144 --transition-type wipe --transition-duration 1
 
 #update the sddm image
 ln -sf /usr/share/sddm/themes/sdt/Backgrounds/wallpaper$SWITCHTO.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
