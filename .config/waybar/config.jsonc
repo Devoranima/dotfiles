@@ -6,9 +6,10 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 50,
-    "modules-left": ["hyprland/workspaces","cpu","memory","disk","battery","hyprland/window"],
+    "modules-left": ["hyprland/workspaces","custom/sysinfo","battery","hyprland/window"],
     "modules-center": ["custom/wallpaper", "custom/kblayout", "custom/updates", "clock","custom/power_btn"],
-    "modules-right": ["custom/weather", "bluetooth", "network", "pulseaudio","pulseaudio#microphone"],
+    // "custom/weather" disabled, see commented-out block below.
+    "modules-right": ["bluetooth", "network", "pulseaudio","pulseaudio#microphone"],
     
     "hyprland/window": {
         "format": "{}",
@@ -32,9 +33,9 @@
         "on-click": "~/.config/waybar/scripts/wallpaper-picker.sh",
         "tooltip": false
     },
-    
+
     "custom/kblayout": {
-        "format": "  {}",
+        "format": "{}",
         "interval": 1,
         "exec": "~/.config/waybar/scripts/kblayout.sh"
     },
@@ -50,30 +51,14 @@
         "tooltip": false
     },
 
-    "cpu": {
+    "custom/sysinfo": {
+        "exec": "~/.config/waybar/scripts/sysinfo.sh",
         "interval": 10,
-        "format": " {usage}%",
-        "max-length": 10,
+        "return-type": "json",
+        "tooltip": true,
         "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
     },
 
-    "disk": {
-        "interval": 30,
-        "format": "󰋊 {percentage_used}%",
-        "path": "/",
-        "tooltip": true,
-        "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)",
-        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
-    },
-
-    "memory": {
-        "interval": 30,
-        "format": " {}%",
-        "max-length": 10,
-        "tooltip": true,
-        "tooltip-format": "Memory - {used:0.1f}GB used",
-        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
-    },
     "battery": {
 	    "format": "{icon} {capacity}%",
     	"format-charging": "󰂄 {capacity}%",
@@ -103,14 +88,14 @@
         }
     },
 
-    "custom/weather": {
-        //shows the current weather and forecast
-        "tooltip" : true,
-        "format" : "{}",
-        "interval" : 300,
-        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-        "return-type" : "json"
-    },
+    // "custom/weather": {
+    //     //shows the current weather and forecast
+    //     "tooltip" : true,
+    //     "format" : "{}",
+    //     "interval" : 300,
+    //     "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+    //     "return-type" : "json"
+    // },
     "bluetooth": {
         "format": "󰂯",
         "format-disabled": "󰂲",
@@ -123,20 +108,24 @@
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\nConnected devices ({num_connections}):\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-        "on-click": "bluetooth toggle",
-        "on-click-right": "blueman-manager",
+        "on-click": "blueman-manager",
+        "on-click-right": "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on",
         "interval": 5
     },
     "network": {
-        "format-wifi": "{icon}",
-        "format-ethernet": "󰈀  {ifname}",
-        "format-disconnected": "󰤭  No Connection",
-        "format-linked": "󰈀  {ifname} (No IP)",
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "󰤭 No Connection",
+        "format-disabled": "󰤮 Off",
+        "format-linked": "󰈀 {ifname} (No IP)",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "max-length": 20,
         "tooltip-format-wifi": "{icon}  {essid}\nSignal: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits}  Down: {bandwidthDownBits}",
         "tooltip-format-ethernet": "󰈀  {ifname}\nUp: {bandwidthUpBits}  Down: {bandwidthDownBits}",
         "tooltip-format-disconnected": "Disconnected",
+        "tooltip-format-disabled": "Wifi radio off",
         "on-click": "kitty --title nmtui sh -c 'nmtui'",
+        "on-click-right": "nmcli radio wifi | grep -q enabled && nmcli radio wifi off || nmcli radio wifi on",
         "interval": 5
     },
     "tray": {
@@ -151,7 +140,7 @@
     },
 
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
+        "format": "{icon} {volume}%",
         "format-muted": "",
         "on-click": "pamixer -t",
         "on-click-right": "pavucontrol",

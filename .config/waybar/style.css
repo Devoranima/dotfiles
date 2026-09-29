@@ -58,14 +58,11 @@ tooltip label {
 #custom-lock_screen,
 #custom-wallpaper,
 #custom-power_btn,
-#custom-weather,
+#custom-sysinfo,
 #custom-kblayout,
 #window,
 #language,
-#cpu,
-#disk,
 #custom-updates,
-#memory,
 #clock,
 #battery,
 #pulseaudio,
@@ -86,7 +83,7 @@ window#waybar.empty #window {
   opacity: 0.001;
 }
 
-#custom-wallpaper, #custom-lock_screen, #temperature, #custom-launch_wofi, #cpu, #custom-weather {
+#custom-wallpaper, #custom-lock_screen, #temperature, #custom-launch_wofi, #custom-sysinfo, #bluetooth {
     border-radius: 0px 0px 0px 10px;
 }
 
@@ -95,7 +92,7 @@ window#waybar.empty #window {
     margin-right: 10px;
 }
 
-#custom-lock_screen, #custom-wallpaper, #cpu, #custom-weather {
+#custom-lock_screen, #custom-wallpaper, #custom-sysinfo, #bluetooth {
   padding-left: 16px;
 }
 
@@ -146,6 +143,17 @@ window#waybar.empty #window {
     color: #9db8a6;
 }
 
+#network {
+    color: #c2c2c2;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#network.disabled,
+#network.disconnected {
+    color: #5a5a5a;
+}
+
 #battery {
     color: #b8b8b8;
     border-left: 0px;
@@ -153,7 +161,7 @@ window#waybar.empty #window {
 
 /* flat corners: delete this block to restore the rounded pill corners above */
 tooltip,
-#custom-wallpaper, #custom-lock_screen, #temperature, #custom-launch_wofi, #cpu, #custom-weather,
+#custom-wallpaper, #custom-lock_screen, #temperature, #custom-launch_wofi, #custom-sysinfo, #bluetooth,
 #custom-power_btn, #workspaces, #battery,
 #window {
     border-radius: 0px;
