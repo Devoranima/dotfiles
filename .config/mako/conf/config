@@ -15,7 +15,7 @@ width=300
 height=110
 margin=10
 padding=10
-border-size=2
+border-size=1
 border-radius=6
 icons=1
 max-icon-size=64
@@ -30,25 +30,29 @@ max-visible=5
 layer=overlay
 anchor=top-right
 
-background-color=#2e3440f0
-text-color=#ffffff
-border-color=#313244
-progress-color=over #89b4fa
+# Recolored to the neutral grayscale used by waybar/kitty/wofi (was
+# leftover Catppuccin lavender/blue/pink that didn't match the system).
+# Text stays fully opaque for legibility; only the backdrop is glassy --
+# the compositor's blur (see hyprland.conf layerrule) does the rest.
+background-color=#1e1e1ea6
+text-color=#d8d8d8
+border-color=#d8d8d826
+progress-color=over #c8c8c8
 
 [urgency=low]
-border-color=#2A2F3A
+border-color=#d8d8d81a
 default-timeout=2000
 
 [urgency=normal]
-border-color=#2A2F3A
+border-color=#d8d8d826
 default-timeout=5000
 
 [urgency=high]
-border-color=#f38ba8
-text-color=#f38ba8
+border-color=#c98a8a
+text-color=#c98a8a
 default-timeout=0
 
 [category=mpd]
-border-color=#f9e2af
+border-color=#c2ba9d
 default-timeout=2000
 group-by=category

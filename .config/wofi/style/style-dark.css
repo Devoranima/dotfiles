@@ -1,8 +1,11 @@
+/* Recolored to match the neutral grayscale already used by waybar/kitty/
+   the wallpaper itself, instead of the leftover Catppuccin lavender/blue
+   that never matched the rest of the system. */
 window {
     margin: 0px;
-    border: 5px solid #1e1e2e;
-    background-color: #cdd6f4;
-    border-radius: 15px;
+    border: 2px solid #565656;
+    background-color: #1e1e1e;
+    border-radius: 0px;
 }
 
 #input {
@@ -10,11 +13,11 @@ window {
     margin: 4px;
     padding-left: 20px;
     border: none;
-    color: #cdd6f4;
+    color: #d8d8d8;
     font-weight: bold;
-    background-color: #1e1e2e;
+    background-color: #2a2a2a;
    	outline: none;
-    border-radius: 15px;
+    border-radius: 0px;
     margin: 10px;
     margin-bottom: 2px;
 }
@@ -23,53 +26,64 @@ window {
     margin-bottom: 0px;
 }
 
+/* was a 10px border used as padding; kept as real padding so the
+   spacing survives now that corners are square instead of rounded */
 #inner-box {
     margin: 4px;
-    border: 10px solid #1e1e2e;
-    color: #cdd6f4;
+    padding: 10px;
+    border: none;
+    color: #d8d8d8;
     font-weight: bold;
-    background-color: #1e1e2e;
-    border-radius: 15px;
+    background-color: #1e1e1e;
+    border-radius: 0px;
 }
 
 #outer-box {
     margin: 0px;
     border: none;
-    border-radius: 15px;
-    background-color: #1e1e2e;
+    border-radius: 0px;
+    background-color: #1e1e1e;
 }
 
 #scroll {
     margin-top: 5px;
     border: none;
-    border-radius: 15px;
+    border-radius: 0px;
     margin-bottom: 5px;
     /* background: rgb(255,255,255); */
 }
 
+#img {
+    margin-right: 12px;
+}
+
+/* same mid-gray used by waybar's focused-workspace pill, so the
+   "selected" language matches across the bar and the launcher */
 #img:selected {
-    background-color: #89b4fa;
-    border-radius: 15px;
+    background-color: #6e6e6e;
+    border-radius: 0px;
 }
 
 #text:selected {
-    color: #cdd6f4;
+    color: #e8e8e8;
     margin: 0px 0px;
     border: none;
-    border-radius: 15px;
-    background-color: #89b4fa;
+    border-radius: 0px;
+    background-color: #6e6e6e;
 }
 
 #entry {
     margin: 0px 0px;
+    padding: 4px 8px;
     border: none;
-    border-radius: 15px;
+    border-radius: 0px;
     background-color: transparent;
 }
 
 #entry:selected {
     margin: 0px 0px;
+    padding: 4px 8px;
     border: none;
-    border-radius: 15px;
-    background-color: #89b4fa;
+    border-radius: 0px;
+    background-color: #6e6e6e;
 }

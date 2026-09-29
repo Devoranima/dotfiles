@@ -1,0 +1,21 @@
+window {
+  background: rgba(20, 20, 20, 0.55);   /* lower the last value = more transparent */
+  border-radius: 6px;
+  border: none;
+  opacity: 0.85;
+}
+
+label {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+
+progressbar {
+  min-height: 6px;
+  border-radius: 999px;
+}
+
+progress {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+}

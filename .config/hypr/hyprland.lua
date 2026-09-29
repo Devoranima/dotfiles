@@ -62,22 +62,29 @@ hl.config({
     general = {
         gaps_in     = 5,
         gaps_out    = 10,
-        border_size = 2,
+        border_size = 1,
         col = {
-            active_border   = "rgb(cdd6f4)",
-            inactive_border = "rgba(595959aa)",
-            -- gradient form:
-            -- active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
+            -- Hairline outlines: same hue as before (cdd6f4), just barely
+            -- there at rest and brightening a bit on focus.
+            active_border   = "rgba(cdd6f466)",
+            inactive_border = "rgba(cdd6f41a)",
         },
         layout = "dwindle",
     },
 
     decoration = {
-        rounding = 5,
+        rounding = 3,
+        shadow = {
+            enabled        = true,
+            range          = 10,
+            render_power   = 2,
+            color          = "rgba(00000066)",
+            color_inactive = "rgba(00000026)",
+        },
         blur = {
             enabled           = true,
-            size              = 7,
-            passes            = 4,
+            size              = 6,
+            passes            = 3,
             new_optimizations = true,
         },
     },
@@ -124,12 +131,27 @@ hl.config({
 ----------------------
 
 hl.curve("myBezier", { type = "bezier", points = { { 0.10, 0.9 }, { 0.1, 1.05 } } })
+hl.curve("quietOut", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
 
-hl.animation({ leaf = "windows",    enabled = true, speed = 10, bezier = "myBezier", style = "slide" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 7,  bezier = "myBezier", style = "slide" })
-hl.animation({ leaf = "border",     enabled = true, speed = 10, bezier = "default" })
-hl.animation({ leaf = "fade",       enabled = true, speed = 7,  bezier = "default" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 6,  bezier = "default" })
+-- Quick, soft fade/scale so things arrive and dissolve rather than slide
+-- in like UI chrome -- the "ephemeral" part.
+hl.animation({ leaf = "windows",    enabled = true, speed = 5, bezier = "quietOut", style = "popin 92%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 4, bezier = "myBezier", style = "popin 92%" })
+hl.animation({ leaf = "border",     enabled = true, speed = 8, bezier = "default" })
+hl.animation({ leaf = "fade",       enabled = true, speed = 4, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "quietOut", style = "fade" })
+hl.animation({ leaf = "layers",     enabled = true, speed = 3, bezier = "quietOut", style = "fade" })
+
+-- Same glass treatment on the bar/launcher/notifications so nothing looks
+-- like an opaque panel dropped on top of the desktop.
+for _, ns in ipairs({ "waybar", "wofi", "notifications", "logout_dialog" }) do
+    hl.layer_rule({
+        name        = "blur-" .. ns,
+        match       = { namespace = ns },
+        blur        = true,
+        ignore_alpha = true,
+    })
+end
 
 ----------------------
 ---- WINDOW RULES ----
@@ -147,9 +169,12 @@ end
 hl.window_rule({ name = "float-btop",       match = { title = "^(btop)$" },       float = true })
 hl.window_rule({ name = "float-update-sys", match = { title = "^(update-sys)$" }, float = true })
 
-hl.window_rule({ name = "opacity-kitty",    match = { class = "^(kitty)$" },      opacity = "0.8 0.8" })
-hl.window_rule({ name = "opacity-thunar",   match = { class = "^(thunar)$" },     opacity = "0.8 0.8" })
-hl.window_rule({ name = "opacity-vscodium", match = { class = "^(VSCodium)$" },   opacity = "0.8 0.8" })
+-- kitty handles its own background_opacity (text stays fully opaque, only
+-- the backdrop is glassy) so it gets no compositor-level opacity rule here --
+-- stacking both is what makes a terminal unreadable. GTK apps don't have
+-- that per-pixel trick, so they keep only a light, legible translucency.
+hl.window_rule({ name = "opacity-thunar",   match = { class = "^(thunar)$" },     opacity = "0.95 0.9" })
+hl.window_rule({ name = "opacity-vscodium", match = { class = "^(VSCodium)$" },   opacity = "0.96 0.92" })
 
 hl.window_rule({
     name      = "popin-update-sys",

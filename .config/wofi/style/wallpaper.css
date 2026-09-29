@@ -4,9 +4,9 @@
 }
 
 window {
-    background-color: rgba(24, 24, 37, 0.94);
-    border: 1px solid #45475a;
-    border-radius: 18px;
+    background-color: rgba(36, 36, 36, 0.94);
+    border: none;
+    border-radius: 0px;
 }
 
 #outer-box {
@@ -16,19 +16,19 @@ window {
 #input {
     margin: 0px 0px 14px 0px;
     padding: 10px 14px;
-    border: 1px solid #45475a;
-    border-radius: 12px;
-    background-color: #1e1e2e;
-    color: #cdd6f4;
-    caret-color: #cba6f7;
+    border: none;
+    border-radius: 0px;
+    background-color: #2e2e2e;
+    color: #d8d8d8;
+    caret-color: #b0b0b0;
 }
 
 #input:focus {
-    border: 1px solid #cba6f7;
+    border: none;
 }
 
 #input image {
-    color: #6c7086;
+    color: #6e6e6e;
 }
 
 #scroll {
@@ -42,13 +42,13 @@ window {
 #entry {
     padding: 7px;
     margin: 3px 0px;
-    border-radius: 12px;
+    border-radius: 0px;
     border: 1px solid transparent;
 }
 
 #entry:selected {
-    background-color: #313244;
-    border: 1px solid #cba6f7;
+    background-color: #3a3a3a;
+    border: 1px solid #6e6e6e;
 }
 
 #img {
@@ -58,12 +58,12 @@ window {
 }
 
 #text {
-    color: #a6adc8;
+    color: #a1a1a1;
     margin: 0px;
 }
 
 #entry:selected #text {
-    color: #f5e0dc;
+    color: #e8e8e8;
 }
 
 scrollbar {
