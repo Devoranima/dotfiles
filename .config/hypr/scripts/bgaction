@@ -1,19 +1,7 @@
 #!/usr/bin/bash
 
-#start swwww
-swww query || swww init
 
-#figure out which waybar theme is set
-THEMEIS=$(readlink -f ~/.config/waybar/style.css | cut -d '-' -f2)
-
-wallpapers_folder=~/.config/hypr/wallpapers
-
-#show the correct wallpapper based on the theme
-if [ $THEMEIS == "dark.css" ]; then
-    wallpapers_folder="${wallpapers_folder}/dark"
-else
-    wallpapers_folder="{$wallpapers_folder}/light"
-fi
+wallpapers_folder=$HOME/Pictures/Wallpapers/
 
 filename=$(find $wallpapers_folder -type f | shuf -n 1)
 swww img $filename

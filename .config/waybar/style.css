@@ -1,1 +1,160 @@
-/home/davoth/.config/waybar/style/style-dark.css
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 20px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(20, 20, 20, 0);
+    color: #d8d8d8;
+}
+
+tooltip {
+    background: #242424;
+    opacity: 0.95;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #141414;
+}
+
+tooltip label {
+    color: #d8d8d8;
+}
+
+#workspaces button {
+    padding: 5px;
+    color: #4d4d4d;
+    margin-right: 5px;
+    font-size: 30px;
+}
+
+#workspaces button.active {
+    color: #b3b3b3;
+}
+
+#workspaces button.focused {
+    color: #e8e8e8;
+    background: #6e6e6e;
+    border-radius: 0px;
+}
+
+#workspaces button.urgent {
+    color: #141414;
+    background: #b0a0a0;
+    border-radius: 0px;
+}
+
+#workspaces button:hover {
+    background: #141414;
+    color: #e8e8e8;
+    border-radius: 0px;
+}
+
+#custom-launch_wofi,
+#custom-lock_screen,
+#custom-wallpaper,
+#custom-power_btn,
+#custom-weather,
+#custom-kblayout,
+#window,
+#language,
+#cpu,
+#disk,
+#custom-updates,
+#memory,
+#clock,
+#battery,
+#pulseaudio,
+#bluetooth,
+#network,
+#tray,
+#temperature,
+#workspaces {
+    background: #242424;
+    opacity: 0.85;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 0px;
+    border: 0px;
+}
+
+window#waybar.empty #window {
+  opacity: 0.001;
+}
+
+#custom-wallpaper, #custom-lock_screen, #temperature, #custom-launch_wofi, #cpu, #custom-weather {
+    border-radius: 0px 0px 0px 10px;
+}
+
+#custom-power_btn, #workspaces, #battery {
+    border-radius: 0px 0px 10px 0px;
+    margin-right: 10px;
+}
+
+#custom-lock_screen, #custom-wallpaper, #cpu, #custom-weather {
+  padding-left: 16px;
+}
+
+#temperature.critical {
+    color: #c98a8a;
+}
+
+#workspaces {
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+#window {
+    border-radius: 0px 0px 10px 10px;
+    margin-right: 20px;
+}
+
+#custom-launch_wofi {
+    color: #c2c2c2;
+    margin-left: 10px;
+    border-right: 0px;
+}
+
+#pulseaudio {
+    color: #c2c2c2;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#pulseaudio.microphone {
+    color: #a8a8ae;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#bluetooth {
+    color: #b8b8b8;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+    color: #5a5a5a;
+}
+
+#bluetooth.connected {
+    color: #9db8a6;
+}
+
+#battery {
+    color: #b8b8b8;
+    border-left: 0px;
+}
+
+/* flat corners: delete this block to restore the rounded pill corners above */
+tooltip,
+#custom-wallpaper, #custom-lock_screen, #temperature, #custom-launch_wofi, #cpu, #custom-weather,
+#custom-power_btn, #workspaces, #battery,
+#window {
+    border-radius: 0px;
+}
